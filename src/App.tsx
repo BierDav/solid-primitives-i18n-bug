@@ -10,13 +10,15 @@ type RawDictionary = typeof dict;
 
 export type Dictionary = Flatten<RawDictionary>;
 
-const en_flat_dict: Dictionary = i18n.flatten(dict);
 
-async function fetchDictionary(): Promise<Dictionary> {
-  return en_flat_dict;
-}
 
 const App: Component = () => {
+  const en_flat_dict: Dictionary = i18n.flatten(dict);
+
+  async function fetchDictionary(): Promise<Dictionary> {
+    console.log("fetch called")
+    return en_flat_dict;
+  }
   const [ldict] = createResource(() => '', fetchDictionary, {
     initialValue: en_flat_dict,
   });
